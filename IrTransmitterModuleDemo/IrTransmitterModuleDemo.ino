@@ -57,7 +57,7 @@ void setup()
 
 void loop()
 {
-   /* If there are data to read, do nothing */
+   /* If there are no data to read, do nothing */
    if (!Serial.available())
    {
       return;
@@ -89,7 +89,7 @@ void loop()
    }
 
    /* Check if command's still has valid length. */
-   if (hexStringLength >= NEC_HEX_STRING_MAX_LENGTH)
+   if (hexStringLength > NEC_HEX_STRING_MAX_LENGTH)
    {
       ResetHexString();
       return;
