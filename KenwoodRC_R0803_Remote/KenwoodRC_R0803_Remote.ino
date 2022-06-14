@@ -68,6 +68,8 @@ static void sendNecCommand(uint32_t buttonCode, uint8_t repeats)
 
 static void processCommandString(const char *command)
 {
+   Serial.println(command);
+
    if (strcmp(command, "power") == 0)
    {
       sendNecCommand(BUTTON_CODE_POWER_TOGGLE, 0);
@@ -95,6 +97,8 @@ static void processCommandString(const char *command)
       sendNecCommand(BUTTON_CODE_MUTE, 0);
       return;
    }
+
+   Serial.println("Command not found");
 }
 
 /* PUBLIC FUNCTIONS */
@@ -116,7 +120,6 @@ void loop()
    }
 
    char c = btSerial.read();
-   Serial.write(c);
 
    if (c == COMMAND_END_MARKER_VALUE)
    {
